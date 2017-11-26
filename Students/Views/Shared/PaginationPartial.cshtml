@@ -1,0 +1,27 @@
+﻿@model int
+
+@{
+    var totalPages = Model / ViewBag.pageSize;
+    var module = Model % ViewBag.pageSize;
+    
+    // If the module is greather than 0 we will add 1 to show the last page
+    if(module > 0)
+    {
+        totalPages += 1;
+    }
+}
+
+<ul class="pagination">
+    @for (int i = 1; i <= (totalPages); i++)
+    {
+        if (i == ViewBag.page)
+        {
+            <li class="disabled"><a href="#">@i</a></li>
+        }
+        else
+        {
+            <li><a href="@Url.Action("Index", "Student", new { SearchBy = ViewBag.SearchBy , Search = ViewBag.Search , page = i , pageSize  = ViewBag.pageSize }).ToString()">@i</a></li>
+        }
+
+    }
+</ul>

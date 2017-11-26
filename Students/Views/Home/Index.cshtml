@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@section featured {
+    <section class="featured">
+        <div class="container">
+            <div class="jumbotron">
+                <h1>Blue Insurance Test</h1>
+                <p>Cristian Fernández</p>
+            </div>
+        </div>
+    </section>
+}
+<h3>I've completed the following tasks:</h3>
+<ol class="round">
+    <li class="one">
+        <h5>Task 1</h5>
+        We would like the candidate to build a student management system using MVC. The system should allow users to add, update and delete students. The system should also display a paged list of students in the system and be searchable. The data should be read from a database and the students should have the following characteristics: First Name, Surname, Gender, DOB, Address 1, Address 2, Address 3, Course The code should be submitted as a ZIP file
+        <b>@Html.ActionLink("Solution", "Index", "Student")</b>
+    </li>
+
+    <li class="two">
+        <h5>Task 2</h5>
+        Write a console application that reads in a text file and prints out its size in bytes. Use async to fire the method that reads the file size before handing control back to display a message stating the file is being read, finally print the size of the file.
+        <b>@Html.ActionLink("Solution", "Console", "Tasks")</b>
+    </li>
+
+    <li class="three">
+        <h5>Task 3</h5>
+        Write some code, that will flatten an array of arbitrarily nested arrays of integers into a flat array of integers. e.g. [[1,2,[3]],4] -> [1,2,3,4]
+        <b>@Html.ActionLink("Solution", "Array", "Tasks")</b>
+    </li>
+</ol>

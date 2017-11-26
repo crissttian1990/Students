@@ -1,0 +1,81 @@
+﻿@{
+    ViewBag.Title = "Console";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Console</h2>
+
+<div class="row">
+    <h3>Console File Solution</h3>
+    <p>It reads a file and output its size in bytes</p>
+</div>
+
+<div class="row">
+
+    <pre>
+C#
+
+
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+namespace FilesApplication
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Create the task
+            Task task = new Task(ProcessingDataAsync);
+            // Start the task
+            task.Start();
+            // Wait for it to be completed
+            task.Wait();
+            // End
+            Console.ReadLine();
+        }
+        static async void ProcessingDataAsync()
+        {
+            // Path of the file
+            string filePath = "C:\\textfile.txt";
+            // Fire the GetFileSizeAsync method
+            Task(int) task = GetFileSizeAsync(filePath);
+            // Showing "Loading" while we are waiting for the process to be completed 
+            Console.WriteLine("Loading...");
+            // It shows the result when the process is done
+            int x = await task;
+            Console.WriteLine("File size: " + x + " bytes");
+        }
+
+        static async Task(int) GetFileSizeAsync(string file)
+        {
+            Console.WriteLine("Start GetFileSizeAsync");
+            // Reading the file with StreamReader
+            int size = 0;
+            using (StreamReader reader = new StreamReader(file))
+            {
+                // Reads the file and converts it in a string
+                string fileString = await reader.ReadToEndAsync();
+                // It's time to assign the file size
+                size = fileString.Length;
+            }
+            Console.WriteLine("End GetFileSizeAsync");
+            
+            // Returns the result
+            return size;
+        }
+    }
+}
+
+OUTPUT:
+Start GetFileSizeAsync
+Loading...
+End GetFileSizeAsync
+File size: 3253
+
+    </pre>
+
+</div>

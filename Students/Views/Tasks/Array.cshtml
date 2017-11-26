@@ -1,0 +1,109 @@
+﻿@{
+    ViewBag.Title = "Array";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript">
+
+    window.onload = function () {
+
+        var myArray = [[1, 2, [3]], 4, [5, [6, [7, 8], [9]]], 10];
+        console.log("Solution 1");
+        console.log(convertToFlatArraySolution1(myArray));
+        console.log("-----------------------------------------");
+        console.log("Solution 2");
+        console.log(convertToFlatArraySolution2(myArray));
+    };
+
+    function convertToFlatArraySolution1(inputArray) {
+        var outputArray = [];
+        inputArray.forEach(function (aux) {
+            if (Array.isArray(aux)) {
+                outputArray = outputArray.concat(convertToFlatArraySolution1(aux));
+            }
+            else {
+                outputArray.push(aux);
+            }
+        });
+
+        return outputArray;
+    }
+
+    function convertToFlatArraySolution2(inputArray) {
+        var outputArray = inputArray;
+        while (outputArray.some(Array.isArray)) {
+            outputArray = Array.prototype.concat.apply([], outputArray);
+        }
+
+        return outputArray;
+    }
+
+</script>
+
+
+
+<h2>Array Task</h2>
+
+<div class="row">
+    <h3>Solution 1</h3>
+    <p>Recursive function</p>
+</div>
+
+    <div class="row">
+
+        <pre>
+JAVASCRIPT
+
+INPUT: [[1, 2, [3]], 4, [5, [6, [7, 8], [9]]], 10]
+
+    window.onload = function () {
+
+        var myArray = [[1, 2, [3]], 4, [5, [6, [7, 8], [9]]], 10];
+        console.log(convertToFlatArray(myArray));
+    };
+
+    function convertToFlatArray(inputArray) {
+        var outputArray = [];
+        inputArray.forEach(function (aux) {
+            if (Array.isArray(aux)) {
+                outputArray = outputArray.concat(convertToFlatArray(aux));
+            }
+            else {
+                outputArray.push(aux);
+            }
+        });
+
+        return outputArray;
+    }
+
+
+OUTPUT: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    </pre>
+    </div>
+<div class="row">
+    <h3>Solution 2</h3>
+    <p>We go through the array concatenating every array inside of the main one</p>
+</div>
+<div class="row">
+<pre>
+JAVASCRIPT
+
+INPUT: [[1, 2, [3]], 4, [5, [6, [7, 8], [9]]], 10]
+
+    window.onload = function () {
+        var myArray = [[1, 2, [3]], 4, [5, [6, [7, 8], [9]]], 10];
+        console.log(convertToFlatArray(myArray));
+    };
+
+    function convertToFlatArray(inputArray) {
+        var outputArray = inputArray;
+        while (outputArray.some(Array.isArray)) 
+        {
+            outputArray = Array.prototype.concat.apply([], outputArray);
+        }
+        return outputArray;
+    }
+
+OUTPUT: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+</pre>
+</div>
